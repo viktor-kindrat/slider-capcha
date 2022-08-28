@@ -1,7 +1,7 @@
 let checkboxElement = document.querySelector('.capchaRequier__checkbox')
 
 class Capcha {
-    constructor(capchaElement) {
+    constructor(capchaElement, checkbox) {
         this.positionsOfThePiece = {}
         this.positionOfTheThumb = 0;
 
@@ -10,8 +10,9 @@ class Capcha {
         this.changer = document.querySelector('#' + capchaElement + ' #changer');
         this.block = document.querySelector('#' + capchaElement + ' #block');
         this.capchaBlock = document.getElementById(capchaElement);
+        this.checkboxElement = document.querySelector(checkbox)
     }
-    
+
     create(thisBlock) {
         let ctx = this.ctx
         fetch(`https://source.unsplash.com/1800x1800/?random`)
@@ -21,10 +22,10 @@ class Capcha {
                 imageElement.onload = function () {
                     ctx.drawImage(imageElement, 0, 0, 500, 500);
                     thisBlock.capchaBlock.setAttribute('data-hidden', 'false')
-                    
+
                     thisBlock.positionsOfThePiece.x = Math.round(Math.random() * 500);
                     thisBlock.positionsOfThePiece.y = Math.round(Math.random() * 500);
-                    
+
                     thisBlock.block.style.background = `url("${response.url}") no-repeat no-repeat`
                     thisBlock.block.style.backgroundPosition = `calc(${thisBlock.positionsOfThePiece.x / 5}% - 25px) calc(${thisBlock.positionsOfThePiece.y / 5}% - 25px)`
                     thisBlock.block.style.backgroundSize = `515px 515px`;
@@ -43,14 +44,22 @@ class Capcha {
             let val = Math.round(thisBlock.changer.value * 5);
             if (val === thisBlock.positionsOfThePiece.x || (val + 5 >= thisBlock.positionsOfThePiece.x && val - 5 <= thisBlock.positionsOfThePiece.x)) {
                 alert(`Capcha resolved!\n\nAcuracy ${100 - Math.abs((thisBlock.positionsOfThePiece.x - val) / 5)}%`)
+                thisBlock.clear(thisBlock);
+                thisBlock.checkboxElement.dataset.status = 'ready'
             }
         })
         return true;
     }
+
+    clear(thisBlock) {
+        thisBlock.ctx.clearRect(0, 0, 500, 500);
+        thisBlock.block.style = '';
+        thisBlock.capchaBlock.setAttribute('data-hidden', 'true');
+    }
 }
 
-checkboxElement.addEventListener('click', function() {
+checkboxElement.addEventListener('click', function () {
     this.dataset.status = 'loading';
-    let newCapcha = new Capcha('capcha');
+    let newCapcha = new Capcha('capcha', '.capchaRequier__checkbox');
     newCapcha.create(newCapcha);
 })

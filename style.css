@@ -36,6 +36,12 @@
     animation: load ease-out 0.8s infinite;
 }
 
+.capchaRequier__checkbox[data-status="ready"] {
+    border-radius: 0;
+    background-color: green;
+    border: none;
+}
+
 @keyframes load {
     0% {
         border-radius: 50%;
