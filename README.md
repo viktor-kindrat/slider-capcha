@@ -1,4 +1,4 @@
-# slider-capch
+# Slider capcha
 Slider capcha maded by useing Unsplash API and Canvas.js 🤖
 ---
 
