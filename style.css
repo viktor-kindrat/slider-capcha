@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.wrap {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.capcha {
+    width: 550px;
+    padding: 25px 0;
+    border-radius: 15px;
+    box-shadow: 0 0 15px #00000015;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    position: absolute;
+    top: 50px;
+    left: calc(50% - 230px);
+    padding: 25px;
+    box-sizing: content-box;
+    z-index: 200;
+}
+
+.capcha[data-hidden="true"] {
+    display: none;
+}
+
+.capcha .capcha__headline {
+    font-size: 24px;
+    color: #141414;
+    text-align: center;
+}
+
+.capcha .canvas {
+    height: 500px;
+    width: 100%;
+    background: rgb(188, 188, 188);
+}
+
+.capcha .range {
+    width: 100%;
+    accent-color: transparent;
+    overflow: hidden;
+
+}
+
+.capcha input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 25px;
+    width: 25px;
+    border-radius: 1px;
+    cursor: pointer;
+    border: 10px solid rgb(8, 8, 165);
+    color: antiquewhite;
+}
+
+.capcha input[type=range]::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    border: none;
+    height: 20px;
+    background: #e6e6e6;
+    border-radius: 25px;
+}
+
+.capcha .canvas-wrap {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.capcha .block {
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 0 5px #000000;
+    position: absolute;
+    top: 50%;
+    left: 0%;
+}
