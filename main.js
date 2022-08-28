@@ -1,3 +1,5 @@
+let checkboxElement = document.querySelector('.capchaRequier__checkbox')
+
 class Capcha {
     constructor(capchaElement) {
         this.positionsOfThePiece = {}
@@ -47,5 +49,8 @@ class Capcha {
     }
 }
 
-let myCapcha = new Capcha('capcha');
-myCapcha.create(myCapcha);
+checkboxElement.addEventListener('click', function() {
+    this.dataset.status = 'loading';
+    let newCapcha = new Capcha('capcha');
+    newCapcha.create(newCapcha);
+})
