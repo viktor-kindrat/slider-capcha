@@ -14,6 +14,7 @@ JS project. Slider capcha maded by useing Unsplash API and Canvas.js. Working wi
 - OOP (useing classes)
 - Custom checkbox (in dev)
 - Custom range
+- Dataset attributes
 ---
 
 #### You can look preview here:
