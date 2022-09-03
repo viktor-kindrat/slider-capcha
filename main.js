@@ -11,7 +11,8 @@ class Capcha {
         this.changer = document.querySelector('#' + capchaElement + ' #changer');
         this.block = document.querySelector('#' + capchaElement + ' #block');
         this.capchaBlock = document.getElementById(capchaElement);
-        this.checkboxElement = document.querySelector(checkbox)
+        this.checkboxElement = document.querySelector(checkbox);
+        this.attemps = 0;
     }
 
     create(thisBlock) {
@@ -42,16 +43,30 @@ class Capcha {
         })
 
         thisBlock.changer.addEventListener('change', function () {
-            let val = Math.round(thisBlock.changer.value * 5);
-            if (val === thisBlock.positionsOfThePiece.x || (val + 5 >= thisBlock.positionsOfThePiece.x && val - 5 <= thisBlock.positionsOfThePiece.x)) {
+            if (thisBlock.attemps <= 3) {
+                let val = Math.round(thisBlock.changer.value * 5);
+                if (val === thisBlock.positionsOfThePiece.x || (val + 5 >= thisBlock.positionsOfThePiece.x && val - 5 <= thisBlock.positionsOfThePiece.x)) {
+                    let innerContent = thisBlock.capchaHeadline.innerHTML;
+                    thisBlock.capchaHeadline.innerHTML = `Capcha resolved! <br> Acuracy ${100 - Math.abs((thisBlock.positionsOfThePiece.x - val) / 5)}%`
+                    setTimeout(() => {
+                        thisBlock.clear(thisBlock);
+                        thisBlock.checkboxElement.dataset.status = 'ready';
+                        thisBlock.capchaHeadline.innerHTML = innerContent;
+                    }, 3000);
+                }
+            } else {
                 let innerContent = thisBlock.capchaHeadline.innerHTML;
-                thisBlock.capchaHeadline.innerHTML = `Capcha resolved! <br> Acuracy ${100 - Math.abs((thisBlock.positionsOfThePiece.x - val) / 5)}%`
+                thisBlock.capchaHeadline.innerHTML = `You had used all attemps! You are so suspicious 🤨`;
                 setTimeout(() => {
                     thisBlock.clear(thisBlock);
-                    thisBlock.checkboxElement.dataset.status = 'ready';
                     thisBlock.capchaHeadline.innerHTML = innerContent;
                 }, 3000);
             }
+        })
+
+        thisBlock.changer.addEventListener('mouseup', function(){
+            thisBlock.attemps++;
+            console.log(thisBlock.attemps)
         })
         return true;
     }
