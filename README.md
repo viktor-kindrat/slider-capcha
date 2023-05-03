@@ -20,7 +20,8 @@ JS project. Slider capcha maded by useing Unsplash API and Canvas.js. Working wi
 
 #### You can look preview here:
 
-<a href="https://drive.google.com/file/d/1aLmYPdHjeEBkqfqSsVWfXh4tnqeo5jEJ/preview"><img src="https://lh3.googleusercontent.com/drive-viewer/AJc5JmRnHwquZznKuHWF7sgYeFdmJfTaOTyKTRS3K-LKd8XtdgMYZRo5P4U4xVJdJXI5ZsMwQTzmIW4=w1920-h942"></a>
+![Відео-без-назви-—-зроблено-у-Clipchamp](https://user-images.githubusercontent.com/84918090/235879414-949e06fc-03fe-4255-abf9-f3900c253ef5.gif)
+
 
 ---
 [Open](https://capcha-page.netlify.app/)
